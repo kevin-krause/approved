@@ -2,4 +2,6 @@ services:
   database:
     image: "postgres:16-alpine"
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: "dummy"
+    ports:
+      - "5432:5432"
