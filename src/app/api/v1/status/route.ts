@@ -1,13 +1,9 @@
-import Database from "../../../../../infra/database";
+import database from "../../../../../infra/database";
+import { NextRequest, NextResponse } from "next/server";
 
-
-export async function status(request: Request) {
-  const database = new Database();
-  const status = JSON.parse(await database.query("SELECT 1 + 1 as sum"));
-  
-  return new Response(JSON.stringify({ status: "ok", data: status }), { status: 200 });
+export async function GET(request: NextRequest, response: NextResponse) {
+  const result = await database.query("SELECT 1 + 1 as sum");
+  console.log(result.rows);
+  return NextResponse.json({ chave: "são acima da média" });
 }
 
-export async function GET(request: Request) {
-  return status(request);
-}
